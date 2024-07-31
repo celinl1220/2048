@@ -1,0 +1,135 @@
+:root {
+	--background-color: rgb(191, 209, 229);
+	--mainBackground-color: rgb(166, 189, 219);
+
+	--border-color: rgb(217, 229, 240);
+	--inputBorder-color: rgb(80, 133, 188);
+
+	--headerText-color: rgb(8, 96, 168);
+	--scoreText-color: rgb(45, 114, 178);
+
+	--lightTile-color: grey;
+	--darkTile-color: white;
+
+	--tile2-color: #eff4f9;
+	--tile4-color: #d1e0ee;
+	--tile8-color: #b3cce4;
+	--tile16-color: #95b8d9;
+	--tile32-color: #77a4ce;
+	--tile64-color: #598fc3;
+	--tile128-color: #407bb4;
+	--tile256-color: #356696;
+	--tile512-color: #2a5278;
+	--tile1024-color: #203d5a;
+	--tile2048-color: #15293c;
+	--tile4096-color: #0a141e;
+	--tile8192-color: #020406;
+}
+
+* {
+	font-family: sans-serif;
+	text-align: center;
+}
+
+h1 {
+	color: var(--headerText-color);
+}
+
+h2 {
+	color: var(--scoreText-color);
+}
+
+hr {
+	width: 500px;
+}
+
+body {
+	background: var(--background-color);
+}
+
+#board {
+	width: 400px;
+	height: 400px;
+
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.tile {
+	width: 90px;
+	height: 90px;
+	border: 5px solid var(--border-color);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.tile2 {
+	background: var(--tile2-color);
+	color: var(--lightTile-color);
+}
+
+.tile4 {
+	background: var(--tile4-color);
+	color: var(--lightTile-color);
+}
+
+.tile8 {
+	background: var(--tile8-color);
+	color: var(--lightTile-color);
+}
+
+.tile16 {
+	background: var(--tile16-color);
+	color: var(--lightTile-color);
+}
+
+.tile32 {
+	background: var(--tile32-color);
+	color: var(--darkTile-color);
+}
+
+.tile64 {
+	background: var(--tile64-color);
+	color: var(--darkTile-color);
+}
+
+.tile128 {
+	background: var(--tile128-color);
+	color: var(--darkTile-color);
+}
+
+.tile256 {
+	background: var(--tile256-color);
+	color: var(--darkTile-color);
+}
+
+.tile512 {
+	background: var(--tile512-color);
+	color: var(--darkTile-color);
+}
+
+.tile1024 {
+	background: var(--tile1024-color);
+	color: var(--darkTile-color);
+}
+
+.tile2048 {
+	background: var(--tile2048-color);
+	color: var(--darkTile-color);
+}
+
+.tile4096 {
+	background: var(--tile4096-color);
+	color: var(--darkTile-color);
+}
+
+.tile8192 {
+	background: var(--tile8192-color);
+	color: var(--darkTile-color);
+}
