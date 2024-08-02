@@ -3,6 +3,8 @@ var score;
 var rows = 4;
 var cols = 4;
 
+var change = false;
+
 window.onload = () => {
 	setGame();
 }
@@ -14,6 +16,8 @@ const setGame = () => {
 		[0, 0, 0, 0],
 		[0, 0, 0, 0]
 	];
+
+	score = 0;
 
 	for (let r = 0; r < rows; r++) {
 		for (let c = 0; c < cols; c++) {
@@ -101,8 +105,13 @@ const slide = (row) => {
 const slideLeft = () => {
 	for (let r = 0; r < rows; r++) {
 		let row = board[r];
-		row = slide(row);
-		board[r] = row;
+		let slided = slide(row);
+		for (let i = 0; i < row.length; i++) {
+			if (row[i] !== slided[i]) {
+				change = true;
+			}
+		}
+		board[r] = slided;
 
 		for (let c = 0; c < cols; c++) {
 			let tile = document.getElementById(`${r}-${c}`);
@@ -115,10 +124,17 @@ const slideLeft = () => {
 const slideRight = () => {
 	for (let r = 0; r < rows; r++) {
 		let row = board[r];
-		row.reverse();
-		row = slide(row);
-		row.reverse();
-		board[r] = row;
+		let slided = row.slice();
+		slided.reverse();
+		slided = slide(slided);
+		slided.reverse();
+		console.log(row, slided);
+		for (let i = 0; i < row.length; i++) {
+			if (row[i] !== slided[i]) {
+				change = true;
+			}
+		}
+		board[r] = slided;
 
 		for (let c = 0; c < cols; c++) {
 			let tile = document.getElementById(`${r}-${c}`);
@@ -131,10 +147,15 @@ const slideRight = () => {
 const slideUp = () => {
 	for (let c = 0; c < cols; c++) {
 		let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
-		row = slide(row);
+		let slided = slide(row);
+		for (let i = 0; i < row.length; i++) {
+			if (row[i] !== slided[i]) {
+				change = true;
+			}
+		}
 
 		for (let r = 0; r < rows; r++) {
-			board[r][c] = row[r]
+			board[r][c] = slided[r];
 			let tile = document.getElementById(`${r}-${c}`);
 			let num = board[r][c];
 			updateTile(tile, num);
@@ -145,12 +166,19 @@ const slideUp = () => {
 const slideDown = () => {
 	for (let c = 0; c < cols; c++) {
 		let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
-		row.reverse();
-		row = slide(row);
-		row.reverse();
+		let slided = row.slice();
+		slided.reverse();
+		slided = slide(slided);
+		slided.reverse();
+		console.log(row, slided);
+		for (let i = 0; i < rows; i++) {
+			if (row[i] !== slided[i]) {
+				change = true;
+			}
+		}
 
 		for (let r = 0; r < rows; r++) {
-			board[r][c] = row[r]
+			board[r][c] = slided[r];
 			let tile = document.getElementById(`${r}-${c}`);
 			let num = board[r][c];
 			updateTile(tile, num);
@@ -161,16 +189,26 @@ const slideDown = () => {
 document.addEventListener("keyup", (e) => {
 	if (e.code === "ArrowLeft") {
 		slideLeft();
-		setTwo();
+		if (change) {
+			setTwo();
+		}
 	} else if (e.code === "ArrowRight") {
 		slideRight();
-		setTwo();
+		if (change) {
+			setTwo();
+		}
 	} else if (e.code === "ArrowUp") {
 		slideUp();
-		setTwo();
+		if (change) {
+			setTwo();
+		}
 	} else if (e.code === "ArrowDown") {
 		slideDown();
-		setTwo();
+		if (change) {
+			setTwo();
+		}
 	}
+		console.log(change);
 	document.getElementById("score").innerText = score;
+	change = false;
 });
